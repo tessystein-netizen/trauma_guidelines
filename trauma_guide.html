@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trauma-Assessment Leitfaden (NFS)</title>
+    <!-- Tailwind CSS CDN für schnelles, responsives Styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Grundschriftart und dunkler Modus */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a2e; /* Dunkler Hintergrund für hohe Lesbarkeit */
+            color: #e0e0f0;
+        }
+        /* Aktive Tab-Styles */
+        .tab-active {
+            border-bottom: 4px solid #f97316; /* Orange Akzent */
+            color: #ffffff;
+            font-weight: 600;
+        }
+        /* Custom Styles für die kritischen Hinweise */
+        .critical-box {
+            border-left: 5px solid #ef4444; /* Rot für Warnungen */
+            background-color: #272740;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark': '#1a1a2e',
+                        'secondary-dark': '#24243e',
+                        'accent': '#f97316',
+                        'info': '#60a5fa',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div id="app" class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-white mb-2">Trauma-Assessment (NFS)</h1>
+            <p class="text-info">Fokus: Schock, Rekap-Zeit & Koagulopathie</p>
+        </header>
+
+        <!-- Navigations-Tabs -->
+        <nav class="flex justify-around border-b-2 border-secondary-dark mb-6 sticky top-0 bg-primary-dark z-10 p-2 -mx-4 sm:mx-0">
+            <button onclick="showSection('abcde')" id="tab-abcde" class="tab-button tab-active px-4 py-3 text-sm sm:text-base transition duration-300 hover:text-white">
+                1. ABCDE Quick-Check
+            </button>
+            <button onclick="showSection('shock')" id="tab-shock" class="tab-button px-4 py-3 text-sm sm:text-base transition duration-300 hover:text-white">
+                2. Dynamisches Schock-Ass.
+            </button>
+            <button onclick="showSection('trias')" id="tab-trias" class="tab-button px-4 py-3 text-sm sm:text-base transition duration-300 hover:text-white">
+                3. Tödliche Trias & DCR
+            </button>
+        </nav>
+
+        <!-- Inhalt des Leitfadens -->
+        <main class="bg-secondary-dark p-6 sm:p-8 rounded-xl shadow-2xl">
+
+            <!-- 1. ABCDE Quick-Check (Detailliert) -->
+            <section id="abcde" class="content-section">
+                <h2 class="text-2xl font-bold mb-4 text-accent">1. ABCDE: Treat First What Kills First (Erweitert)</h2>
+
+                <div class="space-y-6">
+                    <!-- A (Airway) -->
+                    <div class="p-4 rounded-lg bg-gray-800">
+                        <h3 class="text-xl font-semibold text-white mb-2">A (Airway) – Sicherung und Schutz</h3>
+                        <p class="text-info mb-2">Immer unter Berücksichtigung der **HWS-Immobilisation (C-Spine)**.</p>
+                        <ul class="list-disc list-inside ml-4 text-gray-300 space-y-1">
+                            <li>**Prüfung:** Patency (Atemwegs-Offenheit), Fremdkörper, Zunge (Zurückfallen).</li>
+                            <li>**Intervention A:** Absaugen, OPA/NPA, **GCS &le; 8** oder ungeschützte Atemwege &rarr; Vorbereitung für definitives Airway-Management (ggf. Larynx-Tubus/Intubation nach Protokoll).</li>
+                        </ul>
+                    </div>
+
+                    <!-- B (Breathing) -->
+                    <div class="p-4 rounded-lg bg-gray-800">
+                        <h3 class="text-xl font-semibold text-white mb-2">B (Breathing) – Ventilationseffizienz und Bedrohungen</h3>
+                        <p class="text-info mb-2">Schnelle Inspektion, Palpation, Auskultation und Perfusion.</p>
+                        <ul class="list-disc list-inside ml-4 text-gray-300 space-y-1">
+                            <li>**Prüfung:** Atemfrequenz (Tachypnoe > 20/min!), Symmetrie (paradoxe Atmung bei *Flail Chest*), Hautemphysem, Trachealen-Shift (sehr spätes Zeichen).</li>
+                            <li>**Kritische B-Bedrohungen (*Immediate Life Threats*):** Spannungspneu (Atemnot, Schock, einseitig fehlendes Atemgeräusch), Massiver Hämothorax.</li>
+                            <li><span class="font-bold text-red-400">Intervention B:</span> Bei V.a. Spannungspneu sofortige Nadeldekompression (2. ICR MCL oder 5. ICR MAL) nach Protokoll.</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- C (Circulation) -->
+                    <div class="p-4 rounded-lg bg-gray-800">
+                        <h3 class="text-xl font-semibold text-white mb-2">C (Circulation) – Blutung & Perfusionsstatus</h3>
+                        <p class="text-gray-300 mb-2 font-semibold">Priorität 1: Stoppen der Blutung.</p>
+                        <ul class="list-disc list-inside ml-4 text-gray-300 space-y-1 mb-3">
+                            <li>**Extern:** Tourniquet (Gliedmaßen), Druckverband, Wund-Packing und direkter Druck (Leisten, Achsel, Hals).</li>
+                            <li>**Intern (Die vier kritischen Höhlen):** Prüfen/Stabilisieren der Blutungsquellen in **Thorax, Abdomen, Becken** und **Oberschenkel (lange Röhrenknochen)**.</li>
+                        </ul>
+                        <p class="text-gray-300 mb-2 font-semibold">Priorität 2: Perfusions-Quick-Check (Schock erkennen).</p>
+                        <ul class="list-disc list-inside ml-4 text-gray-300 space-y-1">
+                            <li>**Pulsqualität:** Radial (Systolisch &asymp; 80 mmHg), Femoral (&asymp; 70 mmHg), Carotis (&asymp; 60 mmHg). **Tachykardie** als Frühzeichen.</li>
+                            <li>**Haut:** Feucht, kalt, blass.</li>
+                            <li>**CRT:** Messung ist Pflicht!</li>
+                        </ul>
+                        <div class="mt-3 critical-box p-3 rounded-lg">
+                            <p class="font-bold text-red-400">KRITISCH C-HINWEIS: Der früheste Schock-Prädiktor!</p>
+                            <p class="text-sm">Eine verlängerte Rekap-Zeit (&ge; 2 Sek.) ist der **zuverlässigste Frühindikator** für Schock. Sie zeigt an, dass der Körper durch **massive Vasokonstriktion** (Zentralisierung) den Blutdruck (**RR**) noch aufrechterhalten kann (kompensierter Schock). **Normaler RR schließt Schock nicht aus!**</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. Dynamisches Schock-Assessment (Detailliert) -->
+            <section id="shock" class="content-section hidden">
+                <h2 class="text-2xl font-bold mb-4 text-accent">2. Dynamisches Schock-Assessment & Monitoring</h2>
+
+                <!-- CRT Detail -->
+                <div class="p-4 rounded-lg bg-gray-800 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-3">Rekapillarisierungszeit (CRT) – Der zuverlässigste Frühindikator</h3>
+                    <p class="text-info font-medium mb-3">Die CRT ist das direkteste präklinische Maß für die Gewebeperfusion und die körpereigene Kompensationsfähigkeit.</p>
+
+                    <h4 class="font-bold text-red-400 mt-4 mb-2">CRT vs. Blutdruck (RR) – Der entscheidende Unterschied</h4>
+                    <p class="text-gray-300 mb-3">Im Frühschock versucht der Körper, den lebenswichtigen **Blutdruck (RR)** durch **Vasokonstriktion** (Gefäßverengung) in der Peripherie zu erhalten. **CRT erfasst diese Kompensationsphase:** Blut wird von der Haut abgezogen. **Die Folge:** Der RR ist noch normal, aber die CRT ist bereits verlängert (&ge; 2 Sek.). Dies ist das "Fenster der Kompensation", das der NFS erkennen muss.</p>
+
+                    <h4 class="font-bold text-white mt-4 mb-2">Präzise Messtechnik</h4>
+                    <ul class="list-disc list-inside ml-4 text-gray-300 space-y-1">
+                        <li>**Messung:** **5 Sekunden Druck** (stabile Kompression) auf das **sternale Nagelbett** oder das distale Ende eines Fingers (auf Herzhöhe).</li>
+                        <li>**Zentrale Messung (Sternal):** Ist am wenigsten anfällig für Kälte und am stabilsten.</li>
+                        <li>**Kritische Interpretation:** CRT &ge; 2 Sekunden &rarr; Verdacht auf kritische Minderperfusion. Sofortige Intervention (Volumen/TXA) notwendig.</li>
+                        <li>**Cave:** Kälte (Hypothermie) verlangsamt die CRT, was die Messung verfälschen kann.</li>
+                    </ul>
+                </div>
+
+                <!-- PH Detail -->
+                <h3 class="text-xl font-semibold text-white mt-6 mb-3">Permissive Hypotension (PH) – Klare BD-Ziele</h3>
+                <p class="text-gray-300 mb-4">Ziel: Ausreichende Perfusion der lebenswichtigen Organe ohne Gerinnsel, die sich noch bilden, wegzuspülen (Disruption). D.h. "nicht zu viel, nicht zu schnell".</p>
+
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-700 rounded-lg overflow-hidden">
+                        <thead class="bg-gray-700">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Patientenzustand</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Ziel-BD (Systolisch)</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Begründung/Priorität</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-gray-800 divide-y divide-gray-700">
+                            <tr>
+                                <td class="px-4 py-4 whitespace-nowrap font-medium text-white">Trauma ohne Schädel-Hirn-Trauma (SHT)</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-accent">**80 – 90 mmHg**</td>
+                                <td class="px-4 py-4 text-sm text-gray-300">Begrenzung des Blutverlustes und Vermeidung der Disruption von labilen Gerinnseln.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-4 whitespace-nowrap font-medium text-white">Trauma **mit** SHT (GCS &lt; 8)</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-info">**&ge; 100 mmHg**</td>
+                                <td class="px-4 py-4 text-sm text-gray-300">Sicherstellung des cerebralen Perfusionsdrucks (CPP) zur Vermeidung sekundärer Hirnschäden.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-4 critical-box p-3 rounded-lg">
+                    <p class="font-bold text-red-400">DER WICHTIGSTE ENDPUNKT:</p>
+                    <p class="text-sm">Unabhängig vom BD-Ziel ist der Patient ausreichend perfundiert, wenn er **ansprechbar (wach)** ist oder, bei bewusstlosen Patienten, der **Radialispuls tastbar** ist und die **CRT &lt; 2 Sekunden** beträgt. Ziel ist der **schnellstmögliche Transport** zur definitiven chirurgischen Versorgung.</p>
+                </div>
+
+            </section>
+
+            <!-- 3. Tödliche Trias & DCR (NEU: Detaillierte Pathophysiologie) -->
+            <section id="trias" class="content-section hidden">
+                <h2 class="text-2xl font-bold mb-4 text-accent">3. Die Tödliche Trias & Damage Control Resuscitation (DCR)</h2>
+                <p class="text-info mb-4">Die Trias ist ein sich selbst verstärkender Prozess, der jede Blutung in eine nicht beherrschbare Verblutung überführt. Präklinische Maßnahmen zielen darauf ab, diesen Kreislauf zu durchbrechen.</p>
+
+                <div class="space-y-6">
+                    <div class="p-4 rounded-lg critical-box">
+                        <h3 class="text-xl font-semibold text-red-400 mb-2">Der Fatale Kreislauf: Blutung &hArr; Trias</h3>
+                        <p class="text-gray-300">Blutverlust führt zu Schock, der die Gewebeperfusion stoppt und damit alle drei Komponenten auslöst. Jede Komponente verschlimmert die Blutung.</p>
+                        <div class="text-center mt-3 text-sm text-info font-mono font-bold">
+                            Blutung &hArr; Koagulopathie &hArr; Hypothermie &hArr; Azidose
+                        </div>
+                    </div>
+
+                    <!-- 3A. TIK (Koagulopathie) -->
+                    <div class="p-4 rounded-lg bg-gray-800">
+                        <h3 class="text-xl font-semibold text-white mb-2">TIK (Trauma-induzierte Koagulopathie)</h3>
+                        <p class="text-info font-medium mb-2">**Problem:** Nicht nur Blutverlust, sondern eine primäre Schockreaktion, die die Gerinnung lahmlegt.</p>
+                        <ul class="list-disc list-inside ml-4 text-gray-300 space-y-1">
+                            <li>**Mechanismus:** Durch massiven Gewebeschaden und Schock wird Protein C aktiviert, was zu einer **Hyperfibrinolyse** führt (Gerinnsel werden zu schnell aufgelöst).</li>
+                            <li>**Präklinische Therapie (DCR):** **Tranexamsäure (TXA)** stoppt diese Hyperfibrinolyse.</li>
+                            <li>**TXA-Dosierung:** 1 g i.v. über 10 Minuten.</li>
+                            <li>**Time Window:** **Zwingend innerhalb der ersten 3 Stunden** nach Trauma. Jeder verzögerte Einsatz reduziert die Wirksamkeit.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 3B. Azidose (Säure) -->
+                    <div class="p-4 rounded-lg bg-gray-800">
+                        <h3 class="text-xl font-semibold text-white mb-2">Azidose (pH-Abfall)</h3>
+                        <p class="text-info font-medium mb-2">**Problem:** Sauerstoffmangel im Gewebe stoppt die Aerobe Atmung.</p>
+                        <ul class="list-disc list-inside ml-4 text-gray-300 space-y-1">
+                            <li>**Mechanismus:** Fehlender Sauerstoff (Schock) zwingt die Zellen zum anaeroben Stoffwechsel &rarr; **Laktat-Anstieg** &rarr; Absinken des Blut-pH-Wertes.</li>
+                            <li>**Kritische Wirkung:** Ein pH-Wert &le; 7,1 hemmt die Aktivität fast aller Gerinnungsfaktoren (Enzyme) um **bis zu 50%**. Die Azidose macht die Gerinnung physisch unmöglich.</li>
+                            <li>**Therapie:** Lässt sich präklinisch kaum korrigieren! Nur durch **Wiederherstellung der Perfusion** (Blutstillung & Volumentherapie nach PH-Ziel) und schnellen Transport zu stoppen.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 3C. Hypothermie (Kälte) -->
+                    <div class="p-4 rounded-lg bg-gray-800">
+                        <h3 class="text-xl font-semibold text-white mb-2">Hypothermie (Kälte)</h3>
+                        <p class="text-info font-medium mb-2">**Problem:** Die Körpertemperatur sinkt durch Schock, Kälteexposition und kalte Infusionen.</p>
+                        <ul class="list-disc list-inside ml-4 text-gray-300 space-y-1">
+                            <li>**Mechanismus:** Die optimale Aktivität der Gerinnungsfaktoren liegt bei $37^{\circ}C$. Eine Kernkörpertemperatur von nur $35^{\circ}C$ reduziert die enzymatische Gerinnungsleistung drastisch.</li>
+                            <li>**Doppelte Gefahr:** Die Kälte beeinträchtigt auch die **Thrombozytenfunktion** (Blutplättchen) direkt, was die primäre Blutstillung erschwert.</li>
+                            <li>**Prävention & Therapie:** **Maximale Wärmeerhaltung** ist Pflicht!
+                                <ul>
+                                    <li>Passive Maßnahmen: Kleidung entfernen, sofort in Rettungsdecke/-sack einschlagen.</li>
+                                    <li>Aktive Maßnahmen: Warme Infusionen (falls möglich), Wärmepacks/chemische Wärmedecken.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- JavaScript für die Tab-Steuerung -->
+    <script>
+        function showSection(sectionId) {
+            // Alle Inhaltsbereiche ausblenden
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+
+            // Alle Tabs inaktiv setzen
+            document.querySelectorAll('.tab-button').forEach(tab => {
+                tab.classList.remove('tab-active');
+            });
+
+            // Gewünschten Inhaltsbereich anzeigen
+            const activeSection = document.getElementById(sectionId);
+            if (activeSection) {
+                activeSection.classList.remove('hidden');
+            }
+
+            // Aktiven Tab hervorheben
+            const activeTab = document.getElementById('tab-' + sectionId);
+            if (activeTab) {
+                activeTab.classList.add('tab-active');
+            }
+        }
+
+        // Initialisierung: Stellt sicher, dass beim Laden die erste Sektion angezeigt wird
+        window.onload = () => {
+            showSection('abcde');
+        };
+    </script>
+
+</body>
+</html>
